@@ -1,0 +1,102 @@
+#include <iostream>
+using namespace std;
+
+class A
+{
+	public:
+	int x,y,sum1;
+
+	void getdata(void);
+	void display(void);
+
+};
+
+void A::getdata()
+{
+	cout<<"enter first\n";
+	cin>>x;
+	cout<<"enter second\n";
+	cin>>y;
+}
+void A::display(void)
+{
+	cout<<"first no.: "<<x<<"\n";
+	cout<<"second number :"<<y<<"\n";
+	sum1=x+y;
+	cout<<"sum of these numbers\n"<<sum1<<"\n";
+}
+
+class B: public virtual A
+{
+	public:
+	int mul;
+	void compareandmul(void);
+	
+
+};
+void B::compareandmul(void)
+{
+	if(x>y)
+	{
+		cout<<"first number is greater \n";;
+	}
+	else if(x==y)
+	{
+		cout<<"equal\n";
+	}
+	else
+	{
+		cout<<"second is greater\n";
+	}
+
+	mul=x*y;
+	cout<<"Product of numbers: "<<mul<<endl;
+	
+}
+
+
+class sum {
+private:
+    int a, b, e;
+public:
+
+    void input() {
+        cout << "Enter two numbers:";
+        cin >> a>>b;
+    }
+
+    friend void add(sum &t);
+
+    void displaysum() {
+        cout << "sum is:" << e;
+    }
+};
+
+void add(sum &t) {
+    t.e = t.a + t.b;
+}
+
+class D:public virtual A,public virtual B
+{
+	public:
+	float divi;
+	void div(void);
+};
+void D::div(void)
+{
+	divi=mul/sum1;
+}
+int main ()
+{
+	B s;
+	s.getdata();
+	s.display();
+    s.compareandmul();  
+    sum t;
+    t.input();
+    add(t);
+    t.displaysum();
+    D l;
+    l.div();
+    return 0;
+}
